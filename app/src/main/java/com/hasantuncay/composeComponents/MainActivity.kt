@@ -53,6 +53,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
+import com.hasantuncay.composeComponents.components.AnimatedCounter
 
 import com.hasantuncay.composeComponents.ui.theme.PractiseTheme
 
@@ -216,44 +217,3 @@ fun GreetingPreview() {
 
 
 
-
-@OptIn(ExperimentalAnimationApi::class)
-@Composable
-fun AnimatedCounter(
-    count: Int,
-    modifier: Modifier = Modifier,
-    style: TextStyle = MaterialTheme.typography.bodyLarge
-) {
-    var oldCount by remember {
-        mutableStateOf(count)
-    }
-
-    SideEffect {
-        oldCount = count
-    }
-    Row(modifier = modifier) {
-        val countString = count.toString()
-        val oldCountString = oldCount.toString()
-        for(i in countString.indices) {
-            val oldChar = oldCountString.getOrNull(i)
-            val newChar = countString[i]
-            val char = if(oldChar == newChar) {
-                oldCountString[i]
-            } else {
-                countString[i]
-            }
-            AnimatedContent(
-                targetState = char,
-                transitionSpec = {
-                    slideInVertically { it } with slideOutVertically { -it }
-                }, label = ""
-            ) { char ->
-                Text(
-                    text = char.toString(),
-                    style = style,
-                    softWrap = false
-                )
-            }
-        }
-    }
-}
