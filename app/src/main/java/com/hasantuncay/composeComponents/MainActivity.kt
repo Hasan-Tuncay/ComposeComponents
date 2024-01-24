@@ -1,6 +1,7 @@
 package com.hasantuncay.composeComponents
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedContent
@@ -24,16 +25,19 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,6 +52,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
+import com.hasantuncay.ButtonScreen
+import com.hasantuncay.NavigationController
 
 import com.hasantuncay.composeComponents.ui.theme.PractiseTheme
 
@@ -55,19 +62,20 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var visibility by remember {
-                mutableStateOf(false)
-            }
+          
+            val navController= rememberNavController()
+
             PractiseTheme {
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    SmallExample(){
-                        visibility=true
+                    Column {
+                        NavigationController(navController = navController)
                     }
-                    if(visibility){ Greeting ()}
+
+
 
                 }
             }
@@ -90,17 +98,30 @@ fun Greeting( ) {
     var number by remember {
         mutableStateOf(0)
     }
+    var progress by remember {
+        mutableStateOf(0f)
+    }
     val animatedNumber by animateIntAsState(
         targetValue = number,
         animationSpec = tween(durationMillis = 500, easing = LinearOutSlowInEasing), label = ""
     )
     val max= 100
+    LaunchedEffect(key1 = number, block ={
+        LinearProgressIndicatorCalculate(prgress = number, max =max ){
+            progress=it
+            Log.d("progress", "Greeting: $progress")
+        }
+    } )
     Column (Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
         ){
         LinearProgressBar(progress = number, max = max)
-       AnimatedNumberDisplay(animatedNumber = animatedNumber)
+
+        LinearProgressIndicator(progress = progress, modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 20.dp))
+        AnimatedNumberDisplay(animatedNumber = animatedNumber)
         AnimatedCounter(count = number,
             style = TextStyle(fontSize = 46.sp)
         )
@@ -127,6 +148,7 @@ fun AnimatedNumberDisplay(animatedNumber: Int) {
     ) {
         Text(text = "Value: ", fontSize = 46.sp)
         // AnimatedContent yalnızca sayısal değer için kullanılır
+
         AnimatedContent(
             targetState = animatedNumber,
             transitionSpec = {
@@ -179,10 +201,17 @@ fun LinearProgressBar(
 
 }
 
+fun LinearProgressIndicatorCalculate(prgress: Int, max : Int,updateProgress:(Float)-> Unit){
+
+updateProgress((prgress.toFloat()/max.toFloat()) )
+
+
+}
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    Greeting()
+    //ButtonScreen( )
 }
 
 
