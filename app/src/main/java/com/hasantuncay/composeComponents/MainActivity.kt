@@ -53,8 +53,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
-import com.hasantuncay.ButtonScreen
-import com.hasantuncay.NavigationController
 
 import com.hasantuncay.composeComponents.ui.theme.PractiseTheme
 
@@ -71,11 +69,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Column {
-                        NavigationController(navController = navController)
-                    }
 
 
+NavigationController()
 
                 }
             }
