@@ -13,12 +13,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -148,19 +152,38 @@ fun DialogWithImage(
         }
     }
 }
- @Composable
-fun Dialogs(){
 
+
+@Composable
+fun Dialogs() {
+    var currentDialogIndex by remember { mutableStateOf(0) }
     Column(verticalArrangement = Arrangement.SpaceEvenly) {
 
-        AlertDialogExample({},{},"Dialog","Diaolog", icon = Icons.Default.Check)
-        MinimalDialog {
-
+        when    {
+            currentDialogIndex % 3 == 0 -> {
+                AlertDialogExample({currentDialogIndex++}, {currentDialogIndex++},"","",Icons.Default.Check) // İlk dialog
+            }
+            currentDialogIndex % 3 == 1  -> {
+                MinimalDialog {currentDialogIndex++} // İkinci dialog
+            }
+            currentDialogIndex % 3 == 2 -> {
+                DialogWithImage({currentDialogIndex++}, {currentDialogIndex++}, painter = painterResource(id = R.drawable.sss), "sds") // Üçüncü dialog
+            }
         }
-        DialogWithImage({},{}, painter = painterResource(id = R.drawable.sss),"sds")
-    }
 
+        if (currentDialogIndex < 2) {
+            Button(
+                onClick = {
+                    currentDialogIndex++
+                },
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text(text = "Sonraki Dialog")
+            }
+        }
+    }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun DialogPreview(){
