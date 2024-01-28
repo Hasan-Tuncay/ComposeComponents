@@ -10,10 +10,11 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun NavigationController(
-    modifier: Modifier = Modifier,
+    viewModel: MyViewModel,
+    modifier: Modifier=Modifier
 
 
-) {
+    ) {
 
 val navController= rememberNavController()
     NavHost(

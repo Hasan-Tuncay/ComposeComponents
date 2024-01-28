@@ -57,7 +57,6 @@ fun CanvasCircleClick() {
     LaunchedEffect(Unit, key2 = enabled) {
 
 
-
         while (enabled) {
             withFrameMillis { frameTimeMillis ->
                 Log.d("CanvasCircleClick", "CanvasCircleClick: $frameTimeMillis")
@@ -86,9 +85,11 @@ fun CanvasCircleClick() {
         }
     }
 
-    BoxWithConstraints(modifier = Modifier
-        .fillMaxSize()
-        .background(previousColor)) {
+    BoxWithConstraints(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(previousColor)
+    ) {
 
         Canvas(modifier = Modifier
             .fillMaxSize()
@@ -111,7 +112,14 @@ fun CanvasCircleClick() {
 //}
                         Log.d("enabled", "enabled: $enabled ")
                         // Set the radius to half of the screen's diagonal to cover the entire screen
-                        ballPosition = Offset(Random.nextInt(0, (screenWidthPx-radius).toInt()).toFloat(),Random.nextInt(0, (screenHeightPx-radius).toInt()).toFloat() )
+                        ballPosition = Offset(
+                            Random
+                                .nextInt(0, (screenWidthPx - radius).toInt())
+                                .toFloat(),
+                            Random
+                                .nextInt(0, (screenHeightPx - radius).toInt())
+                                .toFloat()
+                        )
 
                         Log.d(
                             "CanvasCircleClick",
@@ -132,7 +140,7 @@ fun CanvasCircleClick() {
             }, onDraw = {
             val brushColor = Brush.radialGradient(
                 colors = listOf(Color.Red, Color.White),
-                center = Offset(screenWidthPx, screenHeightPx,),
+                center = Offset(screenWidthPx, screenHeightPx),
                 radius = radius,
                 tileMode = TileMode.Clamp
             )
@@ -165,15 +173,16 @@ fun CanvasCircleClick() {
 //                    }
 //                )
 //            }
-drawCircle(ballcolor,
-    radius,
-    ballPosition)
+            drawCircle(
+                ballcolor,
+                radius,
+                ballPosition
+            )
 
         })
     }
 
 }
-
 
 
 fun getRandomDistinctPredefinedColor(previousColor: Color): Color {
