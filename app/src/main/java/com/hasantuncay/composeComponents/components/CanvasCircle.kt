@@ -1,5 +1,6 @@
 package com.hasantuncay.composeComponents.components
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Canvas
@@ -31,6 +32,7 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.random.Random
 
+@SuppressLint("UnusedBoxWithConstraintsScope")
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun CanvasCircleClick() {
@@ -105,6 +107,7 @@ fun CanvasCircleClick() {
                     if (distance <= radius) {
                         previousColor = ballcolor
                         ballcolor = getRandomDistinctPredefinedColor(ballcolor)
+
 
 //coroutine.launch { ballcolor= Color.Transparent
 //delay(500)
