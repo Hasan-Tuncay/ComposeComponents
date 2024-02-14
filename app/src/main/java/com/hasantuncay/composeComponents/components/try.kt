@@ -1,34 +1,30 @@
 package com.hasantuncay.composeComponents.components
 
+import javax.annotation.Nullable
+
+
+enum class Sport { HIKE, RUN, TOURING_BICYCLE, E_TOURING_BICYCLE }
+
+data class Summary(val sport: Sport, val distance: Int)
+
 fun main() {
-    val sum = Solution().sumDigit(9999991)
-    println(sum)
+    val sportStats = listOf(Summary(Sport.HIKE, 92),
+        Summary(Sport.RUN, 77),
+        Summary(Sport.TOURING_BICYCLE, 322),
+        Summary(Sport.E_TOURING_BICYCLE, 656))
+    var maxVal = Summary(Sport.E_TOURING_BICYCLE,0)
+sportStats.forEach {summary->
 
-}
-
-// num=17 (1+7 = 8  > return 8 )
-// num=91 (9+1 = 10  > return 10 )
-// num=568 (5+6+8 = 19  > return 19 )
-class Solution {
-
-    fun main(num: Int) {
-        val sum = sumDigit(num)
-
-    }
-
-
-    fun sumDigit(number: Int): Int {
-        var sum = number
-        while (sum > 9) {
-            var tempSum = 0
-            var tempNumber = sum
-            while (tempNumber > 0) {
-                tempSum += tempNumber % 10
-                tempNumber /= 10
-            }
-            sum = tempSum
+    if ( summary.sport != Sport.E_TOURING_BICYCLE){
+        if(summary.distance> maxVal.distance){
+          maxVal= summary
         }
-        return sum
+
+    }
+    println("${maxVal.sport} ${maxVal.distance}")
+println("Selected sport: ${maxVal.sport} with ${maxVal.sport} km")
+}
+
     }
 
-}
+
