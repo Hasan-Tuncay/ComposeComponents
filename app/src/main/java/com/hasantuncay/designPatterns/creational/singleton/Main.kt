@@ -7,6 +7,6 @@ package com.hasantuncay.designPatterns.creational.singleton
 
         //kotlin
         DatabaseManager.connect()
-        // Veritabanı işlemleri yapılır
+        // Veritabanı işlemleri yapılır s
         DatabaseManager.disconnect()
     }
