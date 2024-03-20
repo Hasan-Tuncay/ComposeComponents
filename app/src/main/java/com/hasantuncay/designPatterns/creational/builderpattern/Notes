@@ -1,0 +1,32 @@
+Method chaining ve Builder pattern, nesne yönelimli programlamada kullanılan ve birbirleriyle ilişkili ancak farklı amaçlar güden iki kavramdır. Her ikisi de daha okunabilir, anlaşılır ve yönetilebilir kod yazmayı hedefler, ancak kullanımları ve uygulama detayları farklılık gösterir.
+
+Method Chaining
+Tanımı:
+Method chaining, bir nesnenin metodlarını ardışık bir şekilde çağırma tekniğidir. Bu teknik, her metodun sonunda nesnenin kendisini (this) döndürmesiyle mümkün olur. Bu sayede, tek bir ifade içinde birden fazla metod çağrısı yapılabilir.
+
+Amaç:
+
+Kodun okunabilirliğini ve anlaşılırlığını artırmak.
+Akıcı ve zincirleme metod çağrılarını sağlayarak, işlemleri birbiri ardına uygulamak.
+Kullanım Alanları:
+
+Sıklıkla Fluent Interface tasarımında kullanılır.
+Nesne yapılandırma, ayarlarının belirlenmesi gibi durumlarda sıkça tercih edilir.
+Builder Pattern
+Tanımı:
+Builder pattern, karmaşık nesnelerin yaratılma sürecini adım adım gerçekleştiren bir yaratılış (creational) tasarım desenidir. Bu desen, bir nesnenin oluşturulması için gereken karmaşık adımları ve konfigürasyonları yönetmeyi kolaylaştırır. Builder pattern genellikle bir Builder sınıfı içerir ve bu sınıf üzerinden nesne özellikleri adım adım ayarlanır.
+
+Amaç:
+
+Karmaşık nesnelerin oluşturulma sürecini basitleştirmek ve daha yönetilebilir hale getirmek.
+Nesnenin oluşturulması için gereken parametrelerin sayısının fazla olduğu durumlarda, kodun okunabilirliğini ve kullanım kolaylığını artırmak.
+Kullanım Alanları:
+
+Çok sayıda parametreye sahip nesnelerin oluşturulması gerektiğinde.
+Nesnenin oluşturulma sürecinde farklı temsiller veya konfigürasyonlar gerektiğinde.
+İlişkileri ve Farkları
+İlişki: Builder pattern sıklıkla method chaining tekniklerini kullanır. Builder sınıfındaki ayar metotları, genellikle zincirleme metod çağrıları yapacak şekilde tasarlanır. Bu, nesne özelliklerini adım adım ayarlamayı ve sonunda nesneyi oluşturmayı kolaylaştırır.
+
+Fark: Ana fark, method chaining'in genel bir programlama tekniği olması ve herhangi bir nesne üzerinde uygulanabilmesi, Builder pattern'ın ise özellikle karmaşık nesne oluşturma süreçlerini yönetmek için kullanılan daha spesifik bir tasarım deseni olmasıdır. Method chaining, sadece metodları ardışık çağırmak için kullanılırken; Builder pattern, nesne oluşturma mantığını kapsülleyerek daha temiz ve anlaşılır kod yazmayı amaçlar.
+
+Kısacası, method chaining kodun okunabilirliğini ve akıcılığını artırırken, Builder pattern karmaşık nesne yaratma süreçlerini yönetir ve bu süreçlerde sıkça method chaining tekniklerinden yararlanır.
