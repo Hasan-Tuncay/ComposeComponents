@@ -25,6 +25,11 @@ data class User(
     // A function to return the full name
     fun fullName(): String = "$firstName $lastName"
 }
+// Extension function for the User data class
+fun User.emailSignature(): String {
+    return "Best regards,\n$firstName $lastName\n$email"
+}
+
 @RequiresApi(Build.VERSION_CODES.O)
 // A data class for posts
 data class Post  constructor(val user: User, val content: String, val creationTime: LocalDateTime = LocalDateTime.now())
@@ -47,7 +52,8 @@ fun main() {
 
     val comment1 = Comment(user2, post1, "Great post!")
     println(comment1)
-
+    // Use the extension function
+    println("Email Signature for User1:\n${user1.emailSignature()}")
     // Using the interface method and a custom function
     println(user1.greet())
     println(user1.fullName())
