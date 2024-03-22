@@ -1,4 +1,8 @@
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.ui.text.toUpperCase
 import java.time.LocalDateTime
+import java.util.Locale
 
 // An interface definition
 interface Person {
@@ -21,13 +25,14 @@ data class User(
     // A function to return the full name
     fun fullName(): String = "$firstName $lastName"
 }
-
+@RequiresApi(Build.VERSION_CODES.O)
 // A data class for posts
-data class Post(val user: User, val content: String, val creationTime: LocalDateTime = LocalDateTime.now())
-
+data class Post  constructor(val user: User, val content: String, val creationTime: LocalDateTime = LocalDateTime.now())
+@RequiresApi(Build.VERSION_CODES.O)
 // A data class for comments
 data class Comment(val user: User, val post: Post, val content: String, val creationTime: LocalDateTime = LocalDateTime.now())
-
+data class Product(val name: String, var price: Double)
+@RequiresApi(Build.VERSION_CODES.O)
 fun main() {
     val user1 = User("John", "Doe", "john@example.com")
     val user2 = User("Jane", email = "jane@example.com") // Using the secondary constructor
@@ -49,4 +54,14 @@ fun main() {
 
     // Demonstration of high-order function usage
     println("Processed message: ${user1.processMessage("hello world")}")
+    val product = Product("Example Product", 29.99)
+
+    // The following is allowed because 'price' is a 'var' (mutable)
+    product.price = 19.99
+
+    // The following is NOT allowed because 'name' is a 'val' (immutable)
+    // product.name = "New Product Name" // This line would cause a compilation error if uncommented
+
+    println("Product: ${product.name}, Price: ${product.price}")
 }
+
