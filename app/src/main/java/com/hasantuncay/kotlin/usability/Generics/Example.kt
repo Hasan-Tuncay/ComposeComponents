@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.Generics
+package com.hasantuncay.kotlin.usability.Generics
 /**
 Kotlin'de jenerikler, farklı türlerle çalışabilen parametrelendirilmiş türler oluşturmanızı sağlar.
 Bu, özellikle koleksiyon sınıfları gibi farklı türdeki nesneleri tutmanız gereken durumlar için kullanışlıdır.

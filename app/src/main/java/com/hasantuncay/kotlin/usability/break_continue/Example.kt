@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.break_continue
+package com.hasantuncay.kotlin.usability.break_continue
 
 class OrderProcessor {
     data class Order(val id: Int, val amount: Double, val category: String)

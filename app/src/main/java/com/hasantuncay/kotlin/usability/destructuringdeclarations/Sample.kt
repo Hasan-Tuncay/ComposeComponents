@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.destructuringdeclarations
+package com.hasantuncay.kotlin.usability.destructuringdeclarations
 
 data class Student(
     val name: String,

@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.dataclass
+package com.hasantuncay.kotlin.usability.dataclass
 
 data class Computer(
     val processor: String,
@@ -13,10 +13,10 @@ data class Computer(
         private var storage: Int = 256
         private var graphicsCard: String? = null
 
-        fun processor(processor: String) = apply { this.processor = processor }
-        fun ram(ram: Int) = apply { this.ram = ram }
-        fun storage(storage: Int) = apply { this.storage = storage }
-        fun graphicsCard(graphicsCard: String?) = apply { this.graphicsCard = graphicsCard }
+        fun processor(processor: String) = apply { Builder.processor = processor }
+        fun ram(ram: Int) = apply { Builder.ram = ram }
+        fun storage(storage: Int) = apply { Builder.storage = storage }
+        fun graphicsCard(graphicsCard: String?) = apply { Builder.graphicsCard = graphicsCard }
 
         fun build() = Computer(processor, ram, storage, graphicsCard)
 
@@ -31,21 +31,14 @@ data class Computer(
 }
 
 fun main() {
-    val gamingComputer = Computer.Builder
-        .processor("AMD Ryzen 9")
-        .ram(32)
-        .storage(1024)
-        .graphicsCard("NVIDIA RTX 3080")
-        .build()
+    val gamingComputer = Computer.build()
 
     println(gamingComputer)
 
     // Resetting the Builder to demonstrate the capability
-    Computer.Builder.reset()
+    Computer.reset()
 
-    val officeComputer = Computer.Builder
-        .processor("Intel i7")
-        .build()
+    val officeComputer = Computer.build()
 
     println(officeComputer)
 }

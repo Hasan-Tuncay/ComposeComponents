@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.Enumaration;
+package com.hasantuncay.kotlin.usability.Enumaration;
 
 
 public enum Season {

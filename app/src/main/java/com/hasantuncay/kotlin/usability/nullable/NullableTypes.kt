@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.nullable
+package com.hasantuncay.kotlin.usability.nullable
 /**
 
 ### Non-Nullable Değişken ve Dereferencing

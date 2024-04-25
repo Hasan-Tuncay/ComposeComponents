@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.Enumaration
+package com.hasantuncay.kotlin.usability.Enumaration
 
 import android.os.Build
 import androidx.annotation.RequiresApi

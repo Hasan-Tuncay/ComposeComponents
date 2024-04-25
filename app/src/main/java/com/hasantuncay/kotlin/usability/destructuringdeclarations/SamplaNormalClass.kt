@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.destructuringdeclarations
+package com.hasantuncay.kotlin.usability.destructuringdeclarations
 
 class Employee(val id: Int, val name: String, val department: String, val salary: Double) {
     /**

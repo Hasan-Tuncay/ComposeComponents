@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.destructuringdeclarations;
+package com.hasantuncay.kotlin.usability.destructuringdeclarations;
 
 
 import android.util.Pair;

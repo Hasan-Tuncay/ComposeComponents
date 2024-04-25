@@ -1,4 +1,4 @@
-package com.hasantuncay.kotlin.Generics
+package com.hasantuncay.kotlin.usability.Generics
 
 data class User(val id: Int, val name: String)
 data class Product(val id: Int, val name: String, val price: Double)
